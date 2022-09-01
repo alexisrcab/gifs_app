@@ -23,7 +23,7 @@ class GiphyApi {
 
     final data = GifResponse.fromJson(res.data);
 
-    print(data.toString());
+    print(data.toJson());
 
     return res.statusCode == 200 ? data : null;
   }
