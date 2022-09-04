@@ -1,8 +1,8 @@
-import 'package:gifs_app/src/data/models/data_model.dart';
-import 'package:gifs_app/src/data/models/images_model.dart';
+import 'package:gifs_app/src/domain/models/gif_model.dart';
+import 'package:gifs_app/src/domain/models/images_model.dart';
 
 class GifResponse {
-  List<DataModel>? data;
+  List<GifModel>? data;
   Pagination? pagination;
   Meta? meta;
 
@@ -10,9 +10,9 @@ class GifResponse {
 
   GifResponse.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
-      data = <DataModel>[];
+      data = <GifModel>[];
       json['data'].forEach((v) {
-        data!.add(DataModel.fromJson(v));
+        data!.add(GifModel.fromJson(v));
       });
     }
     pagination = json['pagination'] != null

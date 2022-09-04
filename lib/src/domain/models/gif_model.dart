@@ -1,6 +1,6 @@
-import 'package:gifs_app/src/data/models/images_model.dart';
+import 'package:gifs_app/src/domain/models/images_model.dart';
 
-class DataModel {
+class GifModel {
   String? type;
   String? id;
   String? url;
@@ -23,30 +23,31 @@ class DataModel {
   Analytics? analytics;
   User? user;
 
-  DataModel(
-      {this.type,
-      this.id,
-      this.url,
-      this.slug,
-      this.bitlyGifUrl,
-      this.bitlyUrl,
-      this.embedUrl,
-      this.username,
-      this.source,
-      this.title,
-      this.rating,
-      this.contentUrl,
-      this.sourceTld,
-      this.sourcePostUrl,
-      this.isSticker,
-      this.importDatetime,
-      this.trendingDatetime,
-      this.images,
-      this.analyticsResponsePayload,
-      this.analytics,
-      this.user});
+  GifModel({
+    this.type,
+    this.id,
+    this.url,
+    this.slug,
+    this.bitlyGifUrl,
+    this.bitlyUrl,
+    this.embedUrl,
+    this.username,
+    this.source,
+    this.title,
+    this.rating,
+    this.contentUrl,
+    this.sourceTld,
+    this.sourcePostUrl,
+    this.isSticker,
+    this.importDatetime,
+    this.trendingDatetime,
+    this.images,
+    this.analyticsResponsePayload,
+    this.analytics,
+    this.user,
+  });
 
-  DataModel.fromJson(Map<String, dynamic> json) {
+  GifModel.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     url = json['url'];

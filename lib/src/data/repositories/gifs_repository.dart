@@ -1,5 +1,5 @@
 import 'package:gifs_app/src/data/data_sources/remote/giphy_api.dart';
-import 'package:gifs_app/src/domain/entities/egif.dart';
+import 'package:gifs_app/src/domain/models/gif_model.dart';
 import 'package:gifs_app/src/domain/repository/igifs_repository.dart';
 
 class GifsRepository extends IGifsRepository {
@@ -8,14 +8,16 @@ class GifsRepository extends IGifsRepository {
   GifsRepository({required this.service});
 
   @override
-  Future<EGif?> getTrending() async {
-    final res = await service.getTrending();
+  Future<List<GifModel>> getTrending() async {
+    final res = await service.getTrendingRaw();
 
-    return null;
+    if (res == null) throw Exception('No data found');
+
+    return res.data!;
   }
 
   @override
-  Future<EGif> searchGifs(String query) {
+  Future<List<GifModel>> searchGifs(String query) {
     // TODO: implement getTrending
     throw UnimplementedError();
   }

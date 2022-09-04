@@ -10,8 +10,29 @@ class TrendingView extends ConsumerWidget {
     final trending = ref.watch(trendingProvider);
 
     return Scaffold(
-      body: const Center(
-        child: Text('Hola mundo'),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return SizedBox(
+                  height: 300,
+                  child: GridTile(
+                    child: Card(
+                      child: Image(
+                        image: NetworkImage(
+                          trending[index].images!.original!.url!,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              },
+              childCount: trending.length,
+            ),
+          )
+        ],
       ),
     );
   }

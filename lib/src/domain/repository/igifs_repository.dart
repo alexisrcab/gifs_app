@@ -1,6 +1,6 @@
-import 'package:gifs_app/src/domain/entities/egif.dart';
+import 'package:gifs_app/src/domain/models/gif_model.dart';
 
 abstract class IGifsRepository {
-  Future<EGif?> getTrending();
-  Future<EGif?> searchGifs(String query);
+  Future<List<GifModel>> getTrending();
+  Future<List<GifModel>> searchGifs(String query);
 }
