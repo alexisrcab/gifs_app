@@ -1,6 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dio/dio.dart';
-import 'package:gifs_app/src/domain/models/gif_model.dart';
-import 'package:gifs_app/src/domain/models/gif_response_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gifs_app/models/gif_model.dart';
+import 'package:gifs_app/models/gif_response_model.dart';
 
 class GiphyApi {
   final Dio client = Dio();
@@ -28,3 +31,7 @@ class GiphyApi {
     return res.statusCode == 200 ? data : null;
   }
 }
+
+final giphyApiProvider = Provider<GiphyApi>((ref) {
+  return GiphyApi();
+});

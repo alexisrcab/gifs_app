@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gifs_app/src/presentation/views/home/home_view.dart';
+import 'package:gifs_app/pages/home/home_view.dart';
 
 class GifsApp extends StatelessWidget {
   const GifsApp({super.key});

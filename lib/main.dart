@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gifs_app/src/app.dart';
-import 'package:gifs_app/src/logger.dart';
+import 'package:gifs_app/app.dart';
+import 'package:gifs_app/logger.dart';
 
 void main() {
   runApp(

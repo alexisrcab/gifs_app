@@ -1,5 +1,5 @@
-import 'package:gifs_app/src/domain/models/gif_model.dart';
-import 'package:gifs_app/src/domain/models/images_model.dart';
+import 'package:gifs_app/models/gif_model.dart';
+import 'package:gifs_app/models/images_model.dart';
 
 class GifResponse {
   List<GifModel>? data;
