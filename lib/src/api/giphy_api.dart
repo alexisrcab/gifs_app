@@ -2,8 +2,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gifs_app/models/gif_model.dart';
-import 'package:gifs_app/models/gif_response_model.dart';
+import 'package:gifs_app/src/models/gif_model.dart';
+import 'package:gifs_app/src/models/gif_response_model.dart';
 
 class GiphyApi {
   final Dio client = Dio();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gifs_app/providers/ui/ui_provider.dart';
+import 'package:gifs_app/src/providers/ui/ui_provider.dart';
 
 class NavBar extends ConsumerWidget {
   const NavBar({

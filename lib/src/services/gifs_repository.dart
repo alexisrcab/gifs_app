@@ -1,5 +1,5 @@
-import 'package:gifs_app/api/giphy_api.dart';
-import 'package:gifs_app/models/gif_model.dart';
+import 'package:gifs_app/src/api/giphy_api.dart';
+import 'package:gifs_app/src/models/gif_model.dart';
 
 class GifsRepository {
   final GiphyApi api;

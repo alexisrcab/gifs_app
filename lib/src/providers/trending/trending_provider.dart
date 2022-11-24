@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gifs_app/models/gif_model.dart';
-import 'package:gifs_app/providers/repository/gifs_repository_provider.dart';
-import 'package:gifs_app/services/gifs_repository.dart';
+import 'package:gifs_app/src/models/gif_model.dart';
+import 'package:gifs_app/src/providers/repository/gifs_repository_provider.dart';
+import 'package:gifs_app/src/services/gifs_repository.dart';
 
 final trendigProvider =
     StateNotifierProvider<TrendingStateNotifier, List<GifModel>>((ref) {
