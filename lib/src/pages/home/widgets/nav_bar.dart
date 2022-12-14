@@ -27,11 +27,6 @@ class NavBar extends ConsumerWidget {
           icon: Icon(Icons.explore_outlined),
           label: 'Trending',
         ),
-        NavigationDestination(
-          selectedIcon: Icon(Icons.settings),
-          icon: Icon(Icons.settings_outlined),
-          label: 'Settings',
-        ),
       ],
     );
   }

@@ -5,15 +5,9 @@ class FavsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(actions: [
-        IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {},
-        )
-      ]),
-      body: const Center(
-        child: Text('Hola mundo'),
+    return const Scaffold(
+      body: Center(
+        child: Text('Deberia de mostras gifs guardados'),
       ),
     );
   }

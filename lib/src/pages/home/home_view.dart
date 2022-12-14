@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gifs_app/src/pages/favs/favs_view.dart';
 import 'package:gifs_app/src/pages/home/widgets/nav_bar.dart';
-import 'package:gifs_app/src/pages/settings/settings_view.dart';
 import 'package:gifs_app/src/pages/trending/trending_view.dart';
 import 'package:gifs_app/src/providers/ui/ui_provider.dart';
 
@@ -12,7 +11,6 @@ class HomeView extends ConsumerWidget {
   final List<Widget> pages = const [
     FavsView(),
     TrendingView(),
-    SettingsView(),
   ];
 
   @override
