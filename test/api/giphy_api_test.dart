@@ -5,6 +5,6 @@ void main() {
   test('Api Test', () {
     final api = GiphyApi();
 
-    api.getTrendingRaw();
+    api.getTrendingRaw(index: 1);
   });
 }

@@ -6,8 +6,8 @@ class GifsRepository {
 
   GifsRepository({required this.api});
 
-  Future<List<GifModel>> getTrending() async {
-    final res = await api.getTrendingRaw();
+  Future<List<GifModel>> getTrending({required int index}) async {
+    final res = await api.getTrendingRaw(index: index);
 
     if (res == null) throw Exception('No data found');
 

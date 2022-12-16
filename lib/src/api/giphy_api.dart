@@ -20,13 +20,11 @@ class GiphyApi {
     return null;
   }
 
-  Future<GifResponse?> getTrendingRaw() async {
+  Future<GifResponse?> getTrendingRaw({required int index}) async {
     final res = await client
         .get('https://api.giphy.com/v1/gifs/trending?api_key=$apiKey');
 
     final data = GifResponse.fromJson(res.data);
-
-    print(data.toJson());
 
     return res.statusCode == 200 ? data : null;
   }

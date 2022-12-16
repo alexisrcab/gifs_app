@@ -11,7 +11,7 @@ class GifsApp extends StatelessWidget {
       title: 'Gifs App',
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/': ((context) => const HomeView()),
+        '/': (context) => const HomeView(),
       },
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.white,
