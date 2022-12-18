@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gifs_app/src/pages/trending/widgets/gif_container.dart';
 import 'package:gifs_app/src/providers/trending/trending_provider.dart';
 
 class TrendingView extends ConsumerStatefulWidget {
@@ -12,22 +13,34 @@ class TrendingView extends ConsumerStatefulWidget {
 class _TrendingViewState extends ConsumerState<TrendingView> {
   final _scrollController = ScrollController();
 
+  void _onScroll() {
+    if (_isBottom) {
+      ref.read(trendigProvider.notifier).nextPage();
+    }
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+
+    return currentScroll >= (maxScroll * 0.9);
+  }
+
   @override
   void initState() {
     super.initState();
 
-    _scrollController.addListener(() {
-      if (checkScroll()) {
-        print('Fetch more');
-      }
-    });
+    _scrollController.addListener(_onScroll);
   }
 
-  bool checkScroll() {
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentPosition = _scrollController.position.pixels;
-
-    return currentPosition >= (maxScroll * 0.92);
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
   }
 
   @override
@@ -35,7 +48,7 @@ class _TrendingViewState extends ConsumerState<TrendingView> {
     final trending = ref.watch(trendigProvider);
 
     return Scaffold(
-      body: trending.isLoading
+      body: trending.gifs.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -44,36 +57,9 @@ class _TrendingViewState extends ConsumerState<TrendingView> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return SizedBox(
-                        height: 300,
-                        child: GridTile(
-                          child: Card(
-                            child: Image(
-                              image: NetworkImage(
-                                trending.gifs[index].images!.original!.url!,
-                              ),
-                              fit: BoxFit.cover,
-                              loadingBuilder:
-                                  (context, child, loadingProgress) {
-                                if (loadingProgress == null) {
-                                  return child;
-                                }
+                      final gif = trending.gifs[index];
 
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    value: loadingProgress.expectedTotalBytes !=
-                                            null
-                                        ? loadingProgress
-                                                .cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                        : null,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      );
+                      return GifContainer(gif: gif);
                     },
                     childCount: trending.gifs.length,
                   ),

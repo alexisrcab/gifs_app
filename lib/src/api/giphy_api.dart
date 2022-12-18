@@ -10,8 +10,8 @@ class GiphyApi {
   final String apiKey = 'NZmDTVOr91T7skW6gwU3UGLWeOicV8gO';
 
   Future<List<GifModel>?> searchGifs(String query) async {
-    final resp = await client
-        .get('https://api.giphy.com/v1/gifs/search?api_key=$apiKey&q=$query');
+    final resp = await client.get(
+        'https://api.giphy.com/v1/gifs/search?api_key=$apiKey&q=$query&limit=8');
 
     final data = GifResponse.fromJson(resp.data);
 
@@ -22,7 +22,11 @@ class GiphyApi {
 
   Future<GifResponse?> getTrendingRaw({required int index}) async {
     final res = await client
-        .get('https://api.giphy.com/v1/gifs/trending?api_key=$apiKey');
+        .get('https://api.giphy.com/v1/gifs/trending', queryParameters: {
+      'api_key': apiKey,
+      'limit': 8,
+      'offset': index,
+    });
 
     final data = GifResponse.fromJson(res.data);
 

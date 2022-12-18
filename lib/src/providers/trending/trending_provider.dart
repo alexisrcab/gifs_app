@@ -17,10 +17,35 @@ class TrendingStateNotifier extends StateNotifier<TrendingState> {
   }
 
   _inital() async {
-    final gifs = await repository.getTrending(index: 1);
+    final gifs = await repository.getTrending(index: 0);
 
     state = state.copyWith(isLoading: false, gifs: gifs);
   }
 
-  nextPage() {}
+  nextPage() async {
+    // TODO: Error handling
+
+    if (state.isLoading) {
+      return;
+    }
+
+    state = state.copyWith(
+        isLoading: true, isLoadMoreDone: false, isLoadMoreError: false);
+
+    final offset = state.gifs.length;
+
+    final gifs = await repository.getTrending(index: offset);
+
+    if (gifs.isNotEmpty) {
+      state = state.copyWith(
+          isLoading: false,
+          isLoadMoreDone: gifs.isEmpty,
+          gifs: [...state.gifs, ...gifs]);
+    } else {
+      state = state.copyWith(
+        isLoading: false,
+        isLoadMoreDone: gifs.isEmpty,
+      );
+    }
+  }
 }
