@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gifs_app/src/pages/home/home_view.dart';
+import 'package:gifs_app/src/providers/gifs/gifs_provider.dart';
 
-class GifsApp extends StatelessWidget {
+class GifsApp extends ConsumerWidget {
   const GifsApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(gifsProvider);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gifs App',

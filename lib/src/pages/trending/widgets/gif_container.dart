@@ -21,6 +21,12 @@ class GifContainer extends ConsumerWidget {
         );
 
         ref.read(gifsProvider.notifier).addGif(newGif);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Agregado a favoritos'),
+          ),
+        );
       },
       child: SizedBox(
         height: 400,

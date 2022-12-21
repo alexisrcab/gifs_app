@@ -31,4 +31,6 @@ class GifsNotifier extends StateNotifier<List<SimpleGif>> {
 
     state = [...state, newGif];
   }
+
+  removeOne() async {}
 }
