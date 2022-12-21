@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gifs_app/src/models/simple_gif.dart';
+import 'package:gifs_app/src/providers/gifs/gifs_provider.dart';
 
 class GifCachedContainer extends ConsumerWidget {
   final SimpleGif gif;
@@ -12,8 +13,12 @@ class GifCachedContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onLongPress: () {
-        // ref.read(gifsProvider.notifier).addGif(newGif);
-        print('Hola');
+        ref.read(gifsProvider.notifier).removeOne(gif.id);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Gif eliminado de favoritos'),
+          ),
+        );
       },
       child: SizedBox(
         height: 400,

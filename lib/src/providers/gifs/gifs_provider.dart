@@ -32,5 +32,15 @@ class GifsNotifier extends StateNotifier<List<SimpleGif>> {
     state = [...state, newGif];
   }
 
-  removeOne() async {}
+  removeOne(Id id) async {
+    await _isar.writeTxn(() async {
+      await _isar.simpleGifs.delete(id);
+    });
+
+    final copy = [...state];
+
+    copy.removeWhere((element) => element.id == id);
+
+    state = [...copy];
+  }
 }

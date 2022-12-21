@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gifs_app/src/delegates/search_delegate.dart';
 import 'package:gifs_app/src/pages/trending/widgets/gif_container.dart';
 import 'package:gifs_app/src/providers/trending/trending_provider.dart';
 
@@ -54,6 +55,19 @@ class _TrendingViewState extends ConsumerState<TrendingView> {
             )
           : CustomScrollView(
               slivers: [
+                SliverAppBar(
+                  floating: true,
+                  snap: true,
+                  pinned: true,
+                  actions: [
+                    IconButton(
+                        onPressed: () {
+                          showSearch(
+                              context: context, delegate: SearchGifDelegate());
+                        },
+                        icon: const Icon(Icons.search))
+                  ],
+                ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
