@@ -14,8 +14,11 @@ class GifsRepository {
     return res.data!;
   }
 
-  Future<List<GifModel>> searchGifs(String query) {
-    // TODO: implement getTrending
-    throw UnimplementedError();
+  Future<List<GifModel>> searchGifs(String query) async {
+    final res = await api.searchGifs(query);
+
+    if (res == null) throw Exception('No data found');
+
+    return res.data!;
   }
 }

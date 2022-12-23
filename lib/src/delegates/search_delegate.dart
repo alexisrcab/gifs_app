@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gifs_app/src/pages/trending/widgets/gif_container.dart';
+import 'package:gifs_app/src/providers/search/search_provider.dart';
 
 class SearchGifDelegate extends SearchDelegate {
   @override
@@ -23,9 +26,41 @@ class SearchGifDelegate extends SearchDelegate {
   }
 
   @override
-  Widget buildResults(BuildContext context)  {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+  Widget buildResults(BuildContext context) {
+    return Consumer(
+      builder: (context, ref, child) {
+        final search = ref.watch(searchProvider(query));
+
+        return search.when(
+          data: (gifs) {
+            return CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final gif = gifs[index];
+
+                      return GifContainer(gif: gif);
+                    },
+                    childCount: gifs.length,
+                  ),
+                )
+              ],
+            );
+          },
+          error: (error, stackTrace) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        );
+      },
+    );
   }
 
   @override
